@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Core palette */
+  --ink: #0D0D0F;
+  --ink-soft: #1C1C21;
+  --ink-muted: #2E2E38;
+  --chalk: #F5F4F0;
+  --chalk-soft: #EAE9E4;
+  --chalk-muted: #C8C6BF;
+
+  /* Accent colors */
+  --sage: #6BAE60;
+  --sage-light: #A8C5A0;
+  --sage-dark: #3D7A35;
+  --amber: #F5A623;
+  --amber-light: #FFD97D;
+  --coral: #E85D42;
+  --azure: #4A90D9;
+
+  /* Surface colors */
+  --surface-0: #F5F4F0;
+  --surface-1: #FFFFFF;
+  --surface-2: #EAE9E4;
+  --border: rgba(13, 13, 15, 0.08);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(13, 13, 15, 0.08), 0 1px 2px rgba(13, 13, 15, 0.04);
+  --shadow-md: 0 4px 16px rgba(13, 13, 15, 0.08), 0 2px 6px rgba(13, 13, 15, 0.04);
+  --shadow-lg: 0 12px 40px rgba(13, 13, 15, 0.12), 0 4px 12px rgba(13, 13, 15, 0.06);
+  --shadow-xl: 0 24px 64px rgba(13, 13, 15, 0.16), 0 8px 24px rgba(13, 13, 15, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--chalk);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--chalk-muted); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-muted); }
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(107, 174, 96, 0.25);
+  color: var(--ink);
+}
+
+/* ─── Utility classes ─────────────────────────────────────────────────────── */
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-body { font-family: var(--font-body); }
+  .font-mono { font-family: var(--font-mono); }
+
+  .text-ink { color: var(--ink); }
+  .text-ink-soft { color: var(--ink-soft); }
+  .text-ink-muted { color: var(--ink-muted); }
+  .text-chalk { color: var(--chalk); }
+  .text-chalk-muted { color: var(--chalk-muted); }
+
+  .bg-surface-0 { background-color: var(--surface-0); }
+  .bg-surface-1 { background-color: var(--surface-1); }
+  .bg-surface-2 { background-color: var(--surface-2); }
+
+  .border-default { border-color: var(--border); }
+
+  .shadow-card { box-shadow: var(--shadow-md); }
+  .shadow-elevated { box-shadow: var(--shadow-lg); }
+  .shadow-modal { box-shadow: var(--shadow-xl); }
+}
+
+/* ─── Component base ──────────────────────────────────────────────────────── */
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl border border-default shadow-card;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl
+           bg-ink text-chalk font-body font-medium text-sm
+           transition-all duration-200 hover:bg-ink-soft active:scale-95
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-sage {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl
+           font-body font-medium text-sm text-white
+           transition-all duration-200 active:scale-95
+           disabled:opacity-40 disabled:cursor-not-allowed;
+    background-color: var(--sage);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg
+           text-ink-soft font-body font-medium text-sm border border-default
+           transition-all duration-200 hover:bg-surface-2 active:scale-95;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-default bg-white
+           font-body text-sm text-ink placeholder:text-chalk-muted
+           focus:outline-none focus:ring-2 focus:ring-sage/40 focus:border-sage
+           transition-all duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full
+           text-xs font-medium font-body;
+  }
+  .badge-sage {
+    @apply badge;
+    background-color: rgba(107, 174, 96, 0.12);
+    color: var(--sage-dark);
+  }
+  .badge-amber {
+    @apply badge;
+    background-color: rgba(245, 166, 35, 0.12);
+    color: #8B5E0A;
+  }
+  .badge-coral {
+    @apply badge;
+    background-color: rgba(232, 93, 66, 0.12);
+    color: var(--coral);
+  }
+  .badge-azure {
+    @apply badge;
+    background-color: rgba(74, 144, 217, 0.12);
+    color: var(--azure);
+  }
+}
+
+/* ─── Animation helpers ───────────────────────────────────────────────────── */
+.animate-stagger > * {
+  animation: slideUp 0.5s ease-out both;
+}
+.animate-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.animate-stagger > *:nth-child(2) { animation-delay: 80ms; }
+.animate-stagger > *:nth-child(3) { animation-delay: 160ms; }
+.animate-stagger > *:nth-child(4) { animation-delay: 240ms; }
+.animate-stagger > *:nth-child(5) { animation-delay: 320ms; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Correct answer flash */
+.flash-correct {
+  animation: flashCorrect 0.6s ease-out;
+}
+@keyframes flashCorrect {
+  0%, 100% { background-color: transparent; }
+  30% { background-color: rgba(107, 174, 96, 0.15); }
+}
+
+/* Wrong answer flash */
+.flash-wrong {
+  animation: flashWrong 0.6s ease-out;
+}
+@keyframes flashWrong {
+  0%, 100% { background-color: transparent; }
+  30% { background-color: rgba(232, 93, 66, 0.12); }
+}
+
+/* XP gain float */
+.xp-float {
+  animation: xpFloat 1.2s ease-out forwards;
+}
+@keyframes xpFloat {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-40px) scale(0.8); }
+}
