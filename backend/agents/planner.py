@@ -3,7 +3,7 @@ Planner Agent
 Generates personalized learning paths and adjusts difficulty dynamically.
 """
 
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from typing import List, Dict, Any, Optional
 import json

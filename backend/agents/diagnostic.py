@@ -3,7 +3,7 @@ Diagnostic Agent
 Analyzes student responses to identify weak concepts and knowledge gaps.
 """
 
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from typing import List, Dict, Any
 import json

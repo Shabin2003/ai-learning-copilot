@@ -3,7 +3,7 @@ Question Generator Agent
 Creates adaptive questions based on topic, difficulty, and student history.
 """
 
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from typing import Dict, Any, Optional, List
 import uuid

@@ -3,7 +3,7 @@ Explainer Agent
 Provides clear, level-appropriate concept explanations with examples and analogies.
 """
 
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from typing import Dict, Any, Literal
 
@@ -123,7 +123,6 @@ async def generate_hint(
     """Generate a helpful hint without giving away the answer."""
     llm = get_llm(temperature=0.5)
     
-    from langchain.prompts import ChatPromptTemplate
     prompt = ChatPromptTemplate.from_messages([
         ("system", "Generate a helpful hint for a student that guides without revealing the answer. "
                    "Be encouraging. Response: just the hint text, nothing else."),

@@ -3,7 +3,7 @@ Evaluator Agent
 Assesses student answers with partial scoring and detailed feedback.
 """
 
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from typing import Dict, Any, Optional
 import json
